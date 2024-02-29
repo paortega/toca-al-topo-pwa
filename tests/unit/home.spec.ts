@@ -1,12 +1,13 @@
 import { mount } from '@vue/test-utils';
 import Home from '@/views/Home.vue';
+import sinon from 'sinon'; // Importamos sinon
 
 describe('Home.vue', () => {
-  let mockRouter: any;
+  let mockRouter: any; // Definimos explícitamente el tipo de mockRouter
 
   beforeEach(() => {
     mockRouter = {
-      push: jest.fn()
+      push: sinon.spy() // Usamos sinon para crear un mock de router.push
     };
   });
 
@@ -23,6 +24,6 @@ describe('Home.vue', () => {
     await wrapper.find('input[type="text"]').setValue('Test User');
     await button.trigger('click');
     
-    expect(mockRouter.push).toHaveBeenCalledWith({ name: 'game', params: { username: 'Test User' }});
+    sinon.assert.calledWith(mockRouter.push, { name: 'game', params: { username: 'Test User' }}); // Usamos sinon para verificar el llamado a router.push
   });
 });

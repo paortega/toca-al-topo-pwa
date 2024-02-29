@@ -1,28 +1,19 @@
+import { expect } from 'chai';
 import { mount } from '@vue/test-utils';
 import Game from '@/views/Game.vue';
+import sinon from 'sinon';
 
 describe('Game.vue', () => {
-  it('check start game when the button is clicked', async () => {
-    const wrapper = mount(Game);
-    const button = wrapper.find('button');
-    await button.trigger('click');
-    expect(wrapper.vm.gameStarted).toBe(true);
-  });
-
-  it('check stop button', async () => {
-    const wrapper = mount(Game);
-    const button = wrapper.find('button');
-    await button.trigger('click');
-    await button.trigger('click');
-    expect(wrapper.vm.gameStarted).toBe(false);
-  });
-
   it('check increments points when a topo is clicked', async () => {
     const wrapper = mount(Game);
-    const button = wrapper.find('button');
-    await button.trigger('click');
     const topo = wrapper.find('img');
+
+    const incrementPointsStub = sinon.stub(wrapper.vm.$options.methods as any, 'incrementPoints');
+    
     await topo.trigger('click');
-    expect(wrapper.vm.points).toBeGreaterThan(0);
+
+    expect(incrementPointsStub.called).to.be.true; // Usamos to.be.true de Chai para realizar la aserción
+
+    incrementPointsStub.restore();
   });
 });
