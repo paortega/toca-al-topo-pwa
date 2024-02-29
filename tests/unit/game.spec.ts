@@ -11,9 +11,8 @@ describe('Game.vue', () => {
     const incrementPointsStub = sinon.stub(wrapper.vm.$options.methods as any, 'incrementPoints');
     
     await topo.trigger('click');
-
-    expect(incrementPointsStub.called).to.be.true; // Usamos to.be.true de Chai para realizar la aserción
-
+    
+    expect(incrementPointsStub.called).to.be.true;
     incrementPointsStub.restore();
   });
 });

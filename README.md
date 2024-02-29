@@ -6,7 +6,7 @@ Introduce tu nombre de usuario y accede a la sección de juego.
 Podrás jugar en varias modalidades "low", "medium" y "high" que irán a distintas velocidades.
 Los puntos, si clicas dónde aparece el topo, serán de 10, 20 y 30 respectivamente con sus dificultades.
 
-Para el testing se ha utilizado la libreria Mocha con Sinon.
+Para el testing se ha utilizado la libreria Mocha con Sinon-Chai.
 
 
 ## Instalar dependencias
